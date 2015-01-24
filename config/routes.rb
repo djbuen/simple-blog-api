@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
   devise_for :users
   resources :posts
-	scope '/api' do 
-		mount_devise_token_auth_for :users, at: '/auth'
-	end
+  scope '/api' do
+    mount_devise_token_auth_for 'User', at: '/auth'
+  end
 
 
   # The priority is based upon order of creation: first created -> highest priority.
