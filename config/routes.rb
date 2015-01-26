@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
   resources :posts
   scope '/api' do
-    mount_devise_token_auth_for 'User', at: '/auth'
+    mount_devise_token_auth_for 'User', at: '/auth', skip: [:omniauth_callbacks, :confirmation]
+    resources :posts, except: [:new, :edit]
   end
 
 

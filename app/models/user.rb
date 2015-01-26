@@ -4,7 +4,9 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable,
-         :validatable , :omniauthable
-  before_save -> { skip_confirmation! }
-  attr_accessor :username, :confirm_success_url, :config_name, :registration
+         :validatable
+  before_save -> do
+    self.uid = SecureRandom.uuid
+    skip_confirmation!
+  end
 end
