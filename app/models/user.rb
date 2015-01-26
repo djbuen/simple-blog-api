@@ -9,4 +9,6 @@ class User < ActiveRecord::Base
     self.uid = SecureRandom.uuid
     skip_confirmation!
   end
+
+  has_many :posts
 end

@@ -5,7 +5,16 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.all
+    @posts = current_user.posts 
+    respond_to do |format|
+		 format.html { render }
+     format.json { render json: @posts }
+    end
+  end
+
+  # GET /all_posts.json
+  def all_post
+    @posts = Post.all 
     respond_to do |format|
 		 format.html { render }
      format.json { render json: @posts }
@@ -31,6 +40,7 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     Rails.logger.info current_user.inspect
+    @post.user = current_user
 
     respond_to do |format|
       if @post.save
