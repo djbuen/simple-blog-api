@@ -1,6 +1,7 @@
 class CommentsController < ApplicationController
   before_action :set_comment, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, except: [:new, :create]
+  devise_token_auth_group :member, contains: [:user, :admin]
+  before_action :authenticate_member!, except: [:new, :create]
 
   respond_to :json
 

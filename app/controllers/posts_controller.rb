@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
   devise_token_auth_group :member, contains: [:user, :admin]
-  before_action :authenticate_member!, except: [:new, :create, :all_post]
+  before_action :authenticate_member!, except: [:new, :create]
 
   # GET /posts
   # GET /posts.json
