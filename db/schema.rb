@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150127102258) do
+ActiveRecord::Schema.define(version: 20150127112449) do
 
   create_table "admins", force: :cascade do |t|
     t.string   "email",                  limit: 255
@@ -36,6 +36,7 @@ ActiveRecord::Schema.define(version: 20150127102258) do
     t.text     "tokens",                 limit: 65535
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "is_admin",               limit: 1
   end
 
   add_index "admins", ["email"], name: "index_admins_on_email", using: :btree
