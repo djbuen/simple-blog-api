@@ -5,7 +5,7 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-    @posts = current_user.posts 
+    @posts = current_user.posts.includes(:comments)
     respond_to do |format|
 		 format.html { render }
      format.json { render json: @posts }
@@ -14,10 +14,10 @@ class PostsController < ApplicationController
 
   # GET /all_posts.json
   def all_post
-    @posts = Post.all 
+    @posts = Post.all
     respond_to do |format|
 		 format.html { render }
-     format.json { render json: @posts }
+     format.json { render json: @posts.as_json }
     end
   end
 
