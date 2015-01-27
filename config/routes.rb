@@ -3,6 +3,11 @@ Rails.application.routes.draw do
   resources :posts
   scope '/api' do
     mount_devise_token_auth_for 'User', at: '/auth', skip: [:omniauth_callbacks, :confirmation]
+
+  mount_devise_token_auth_for 'Admin', at: 'admin_auth'
+  as :admin do
+    # Define routes for Admin within this block.
+  end
     resources :posts, except: [:new, :edit]
     get 'all_posts' => 'posts#all_post'
     resources :comments
